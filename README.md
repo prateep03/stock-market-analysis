@@ -12,12 +12,13 @@ Claude](https://docs.google.com/document/d/1uaVyrfoowR0TzEY7yW-nWuL1WU0YHjH-PnHw
 The local prompt files are the project-specific starting point for the first
 two sub-agents:
 
-- [Data Agent prompt](agents/data-agent.md)
-- [Analysis Agent prompt](agents/analysis-agent.md)
-- [Flagging Agent prompt](agents/flagging-agent.md)
+- [Data Agent prompt](.claude/agents/data-agent.md)
+- [Analysis Agent prompt](.claude/agents/analysis-agent.md)
+- [Flagging Agent prompt](.claude/agents/flagging-agent.md)
+- [Starter watchlist and source policy](.claude/watchlist.yaml)
 
 The guide defines the final **Flagging Agent** prompt and responsibilities;
-there is not yet a corresponding local prompt file in this directory.
+the local prompts and starter configuration are maintained in `.claude/`.
 
 ![Three agents: data, analysis, and flagging](stock-market-analysis.png)
 
@@ -58,7 +59,7 @@ turn incomplete market data into a confident story.
 
 ### 1. Data Agent
 
-The [Data Agent](agents/data-agent.md) gathers facts only. It must not analyze
+The [Data Agent](.claude/agents/data-agent.md) gathers facts only. It must not analyze
 the data or make recommendations.
 
 For every ticker, it records:
@@ -91,7 +92,7 @@ whether contracts represent newly opened positions or positions being closed.
 
 ### 2. Analysis Agent
 
-The [Analysis Agent](agents/analysis-agent.md) reads the dated data file and
+The [Analysis Agent](.claude/agents/analysis-agent.md) reads the dated data file and
 describes relationships in the data. It must not recommend a trade.
 
 For every ticker, it reports:
@@ -121,7 +122,7 @@ large, liquid stock.
 
 ![Flagging Agent](flagging-agent.png)
 
-The [Flagging Agent](agents/flagging-agent.md) converts the analysis into a
+The [Flagging Agent](.claude/agents/flagging-agent.md) converts the analysis into a
 short research queue. It is a prioritization step, not a trade-decision step.
 
 The agent must return at most five tickers worth investigating today. It should
@@ -186,6 +187,21 @@ of what an informed investor is doing.
 The two-week follow-up log is essential. After roughly three months, it gives
 you a measured hit rate instead of a memory biased toward the flags that worked.
 
+## Starter Watchlist and Source Policy
+
+The [starter watchlist and source policy](.claude/watchlist.yaml) provides a
+small India-focused universe of liquid, widely followed equities across sectors,
+along with the NIFTY 50 and BANKNIFTY benchmarks. It is a research universe,
+not a recommendation list.
+
+The source policy gives NSE and BSE priority for exchange-observed prices,
+volume, derivatives, corporate actions, and announcements. Company
+investor-relations pages are preferred for earnings, dividends, and scheduled
+events. Moneycontrol, Screener.in, TradingView, and Economic Times are
+secondary sources for discovery, context, and cross-checking. The Data Agent
+must record source URLs, timestamps, data freshness, and disagreements rather
+than silently replacing one source's value with another.
+
 ## Recommended Data Record
 
 The implementation can use JSON, CSV, or another structured format, but each
@@ -216,16 +232,18 @@ stock-market-analysis/
 ├── README.md
 ├── stock-market-analysis.png
 ├── flagging-agent.png
-└── agents/
-		├── data-agent.md
-		└── analysis-agent.md
-        └── flagging-agent.md
+└── .claude/
+		├── agents/
+		│		├── data-agent.md
+		│		├── analysis-agent.md
+		│		└── flagging-agent.md
+		└── watchlist.yaml
 ```
 
 The next implementation steps are to add a dated data schema, a source-specific
-collector, an analysis runner, the local flagging-agent prompt, and a follow-up
-log for completed flags. Any implementation should preserve the separation of
-responsibilities described above.
+collector, an analysis runner, and a follow-up log for completed flags. Any
+implementation should preserve the separation of responsibilities described
+above.
 
 ## Safety and Scope
 

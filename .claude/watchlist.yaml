@@ -1,0 +1,139 @@
+market: india
+currency: INR
+exchange_priority:
+  - NSE
+  - BSE
+
+source_policy:
+  primary:
+    exchange_data:
+      name: NSE India
+      url: https://www.nseindia.com/
+      fields:
+        - price
+        - volume
+        - historical_prices
+        - options_volume
+        - open_interest
+        - corporate_actions
+        - exchange_announcements
+    exchange_filings:
+      name: BSE India
+      url: https://www.bseindia.com/
+      fields:
+        - price
+        - volume
+        - historical_prices
+        - corporate_actions
+        - exchange_announcements
+    company_disclosures:
+      name: Company investor-relations website
+      fields:
+        - earnings_dates
+        - dividend_dates
+        - scheduled_events
+        - corporate_actions
+  secondary:
+    - name: Moneycontrol
+      url: https://www.moneycontrol.com/stocksmarketsindia/
+      use_for:
+        - discovery
+        - cross_check
+        - news_context
+    - name: Screener.in
+      url: https://www.screener.in/
+      use_for:
+        - fundamentals
+        - peer_context
+        - cross_check
+    - name: TradingView
+      url: https://www.tradingview.com/
+      use_for:
+        - historical_price_cross_check
+        - chart_context
+    - name: Economic Times Markets
+      url: https://economictimes.indiatimes.com/markets
+      use_for:
+        - news_context
+        - event_discovery
+  rules:
+    - Use an exchange or company source as the authority for material observations.
+    - Use secondary sources for discovery or cross-checking, never as the sole authority when a primary source is available.
+    - Record disagreements between sources in notes instead of silently choosing one value.
+    - Record whether the source is real-time, delayed, end-of-day, or unavailable.
+
+record_requirements:
+  - ticker
+  - exchange
+  - field
+  - as_of
+  - retrieved_at
+  - source
+  - source_type
+  - value
+  - unit
+  - status
+  - notes
+
+options_record_requirements:
+  - expiry
+  - strike
+  - option_type
+  - volume
+  - open_interest
+  - prior_open_interest
+
+benchmarks:
+  - symbol: NIFTY 50
+    exchange: NSE
+    type: index
+  - symbol: BANKNIFTY
+    exchange: NSE
+    type: index
+
+equities:
+  - symbol: RELIANCE
+    exchange: NSE
+    sector: diversified
+  - symbol: HDFCBANK
+    exchange: NSE
+    sector: private_banking
+  - symbol: ICICIBANK
+    exchange: NSE
+    sector: private_banking
+  - symbol: SBIN
+    exchange: NSE
+    sector: public_banking
+  - symbol: KOTAKBANK
+    exchange: NSE
+    sector: private_banking
+  - symbol: AXISBANK
+    exchange: NSE
+    sector: private_banking
+  - symbol: INFY
+    exchange: NSE
+    sector: information_technology
+  - symbol: TCS
+    exchange: NSE
+    sector: information_technology
+  - symbol: BHARTIARTL
+    exchange: NSE
+    sector: telecommunications
+  - symbol: ITC
+    exchange: NSE
+    sector: consumer_goods
+  - symbol: LT
+    exchange: NSE
+    sector: infrastructure
+  - symbol: MARUTI
+    exchange: NSE
+    sector: automobiles
+  - symbol: SUNPHARMA
+    exchange: NSE
+    sector: pharmaceuticals
+  - symbol: TATASTEEL
+    exchange: NSE
+    sector: metals
+  - symbol: HINDUNILVR
+    exchange: NSE
+    sector: consumer_goods
