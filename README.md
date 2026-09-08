@@ -14,6 +14,7 @@ two sub-agents:
 
 - [Data Agent prompt](agents/data-agent.md)
 - [Analysis Agent prompt](agents/analysis-agent.md)
+- [Flagging Agent prompt](agents/flagging-agent.md)
 
 The guide defines the final **Flagging Agent** prompt and responsibilities;
 there is not yet a corresponding local prompt file in this directory.
