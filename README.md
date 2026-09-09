@@ -224,8 +224,7 @@ is available.
 
 ## Current Repository State
 
-At present, this directory contains the prompt-level design rather than a
-complete executable collector or orchestration service:
+At present, this directory contains the prompt-level design rather than a complete executable collector or orchestration service:
 
 ```text
 stock-market-analysis/
@@ -240,22 +239,16 @@ stock-market-analysis/
 		└── watchlist.yaml
 ```
 
-The next implementation steps are to add a dated data schema, a source-specific
-collector, an analysis runner, and a follow-up log for completed flags. Any
-implementation should preserve the separation of responsibilities described
-above.
+The next implementation steps are to add a dated data schema, a source-specific collector, an analysis runner, and a follow-up log for completed flags. Any
+implementation should preserve the separation of responsibilities described above.
 
 ## Safety and Scope
 
-This project is educational and is not financial advice. Options are leveraged
-instruments that can expire worthless and can expose traders to losses beyond
-the initial premium, depending on the strategy. A correct directional view can
-still lose money when the timing is wrong.
+This project is educational and is not financial advice. Options are leveraged instruments that can expire worthless and can expose traders to losses beyond
+the initial premium, depending on the strategy. A correct directional view can still lose money when the timing is wrong.
 
-Treat every flag as the beginning of research. Verify data at the source before
-acting, understand the instrument and its risks, and never commit money that
-you cannot afford to lose. The system is intentionally a screener, not a signal
-generator or an automated trading system.
+Treat every flag as the beginning of research. Verify data at the source before acting, understand the instrument and its risks, and never commit money that
+you cannot afford to lose. The system is intentionally a screener, not a signal generator or an automated trading system.
 
 ## Source
 
